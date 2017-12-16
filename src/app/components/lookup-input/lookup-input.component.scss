@@ -1,0 +1,13 @@
+:host {
+	div {
+		display: flex;
+	}
+	span {
+		background-color: gray;
+		color: #fff;
+		border-radius: 0 3px 3px 0;
+		width: 35px;
+		display: flex;
+		justify-content: center;
+	}
+}
