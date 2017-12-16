@@ -23,8 +23,7 @@ import { Vehicle } from '../../../models/vehicle.model';
 			</div>
 			<div class="form-group col-md-6">
 				<label for="input-foto">Link foto</label>
-				<input type="text" formControlName="foto" class="form-control" id="input-foto" placeholder="Foto"
-				[ngClass]="{'is-invalid': !registerForm.controls['foto'].valid && registerForm.controls['foto'].touched}">
+				<input type="text" formControlName="foto" class="form-control" id="input-foto" placeholder="Foto">
 			</div>
 		</div>
 
@@ -48,7 +47,8 @@ import { Vehicle } from '../../../models/vehicle.model';
 
 		<div class="form-row">
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Salvar</button>
+				<app-button buttonType="primary" type="submit" [isDisabled]="!registerForm.valid">Salvar</app-button>
+				<app-button buttonType="warning" (click)="this.cancelOutput.emit()">Cancelar</app-button>
 			</div>
 		</div>
 	</form>
@@ -59,13 +59,14 @@ export class VehicleRegisterFormComponent {
 
 	registerForm: FormGroup;
 	@Output() vehicleFormOutput: EventEmitter<Vehicle> = new EventEmitter<Vehicle>();
+	@Output() cancelOutput: EventEmitter<void> = new EventEmitter<void>();
 
 	constructor(private _formBuilder: FormBuilder) {
 		this.registerForm = _formBuilder.group({
 			'id': '',
 			'placa': [null, Validators.compose([Validators.required, Validators.minLength(7), Validators.maxLength(7)])],
 			'combustivel': [null, Validators.required],
-			'foto': [null, Validators.required],
+			'foto': [null],
 			'modelo': [null, Validators.required],
 			'marca': [null, Validators.required],
 			'valor': [null, Validators.required]
@@ -73,7 +74,6 @@ export class VehicleRegisterFormComponent {
 	}
 
 	risterVehicleAct(vehicle: Vehicle) {
-		console.log(vehicle);
 		this.registerForm.reset();
 		this.vehicleFormOutput.emit(vehicle);
 	}

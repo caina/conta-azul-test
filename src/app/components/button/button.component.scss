@@ -1,7 +1,9 @@
 :host {
 	button {
 		background-color: gray;
-		padding: 5px 12px;
+		color: #fff;
+		font-size: 13px;
+		padding: 9px 34px;
 		&:hover {
 			cursor: pointer;
 		}

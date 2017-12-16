@@ -1,0 +1,17 @@
+:host {
+	color: #61809C;
+	table {
+		border: 1px solid #C7D3DE;
+		border-radius: 5px;
+	}
+	thead {
+		background-color: #F8FAFC;
+	}
+	tbody {
+		background-color: #fff;
+		tr:hover {
+			background-color: #D5E9FC;
+			cursor: pointer;
+		}
+	}
+}

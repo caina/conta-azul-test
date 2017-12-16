@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 @Component({
 	selector: 'app-vehicle-list-actions',
 	template: `
-	<div>
+	<section>
 		<span>
-			<app-button (onClick)="newCarClick.emit()">Novo Carro</app-button>
-			<app-button>Excluir Carro</app-button>
+			<app-button buttonType="primary" (onClick)="newCarClick.emit()">Novo Carro</app-button>
+			<app-button buttonType="warning">Excluir Carro</app-button>
 		</span>
 		<app-lookup-input></app-lookup-input>
-	</div>
+	</section>
 	`,
 	styleUrls: ['./vehicle-list-actions.component.scss']
 })

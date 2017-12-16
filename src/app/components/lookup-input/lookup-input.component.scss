@@ -1,13 +1,14 @@
 :host {
-	div {
-		display: flex;
+	input {
+		height: 38px;
 	}
-	span {
-		background-color: gray;
-		color: #fff;
-		border-radius: 0 3px 3px 0;
-		width: 35px;
-		display: flex;
-		justify-content: center;
+	.input-group-addon {
+		background-color: #F1F4F9;
+		border-color: #C7D3DE;
+		cursor: pointer;
+
+		&:hover {
+			background-color: rgb(215, 219, 224);
+		}
 	}
 }

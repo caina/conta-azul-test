@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 	</app-container>
   `,
 	styles: [`
-		app-vehicle-list-actions {
-			margin-bottom:10px;
+		app-vehicle-list-table {
+			margin: 10px;
 		}
   `]
 })

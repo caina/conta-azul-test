@@ -9,7 +9,7 @@ const COMPONENTS = [
 	HeaderComponent,
 	ButtonComponent,
 	LookupInputComponent,
-	ContainerComponent
+	ContainerComponent,
 ];
 
 @NgModule({

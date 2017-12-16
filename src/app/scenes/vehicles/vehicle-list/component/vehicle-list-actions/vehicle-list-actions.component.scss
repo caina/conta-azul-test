@@ -1,6 +1,9 @@
 :host {
-	div {
+	section {
 		display: flex;
 		justify-content: space-between;
+	}
+	app-button {
+		margin-right: 26px;
 	}
 }
