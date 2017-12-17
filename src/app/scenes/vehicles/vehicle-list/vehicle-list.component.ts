@@ -1,5 +1,7 @@
+import { Vehicle } from '../models/vehicle.model';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
 	selector: 'app-vehicle-list',
@@ -8,7 +10,9 @@ import { Router } from '@angular/router';
 		<app-vehicle-list-actions
 			(newCarClick)="navigateToAddCar()"
 		></app-vehicle-list-actions>
-		<app-vehicle-list-table></app-vehicle-list-table>
+		<app-vehicle-list-table
+			[vehicles]="vehicles | async"
+		></app-vehicle-list-table>
 	</app-container>
   `,
 	styles: [`
@@ -18,6 +22,8 @@ import { Router } from '@angular/router';
   `]
 })
 export class VehicleListComponent {
+
+	vehicles: Observable<any[]>;
 
 	constructor(private _router: Router) { }
 

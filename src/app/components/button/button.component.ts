@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
 	selector: 'app-button',
@@ -9,22 +9,18 @@ import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 	`,
 	styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent {
 
 	@Input() buttonType: string;
 	@Input() isDisabled: boolean;
 	@Output() onClick: EventEmitter<void> = new EventEmitter<void>();
 	constructor() { }
 
-	ngOnInit(): void {
-		console.log("aa", this.buttonType);
-	}
-
 	getColor() {
 		if (this.buttonType === 'primary') {
 			return '#00C45A';
 		}
-		if(this.buttonType === 'warning') {
+		if (this.buttonType === 'warning') {
 			return '#C4383E';
 		}
 	}

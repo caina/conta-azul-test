@@ -1,11 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { VehicleListComponent } from './scenes/vehicles/vehicle-list/vehicle-list.component';
-import { VehicleRegisterComponent } from './scenes/vehicles/vehicle-register/vehicle-register.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
+import { VehicleListComponent } from './scenes/vehicles/vehicle-list/vehicle-list.component';
+import { VehicleRegisterComponent } from './scenes/vehicles/vehicle-register/vehicle-register.component';
+import { StoreService } from './services/store.service';
 
 @NgModule({
 	declarations: [
@@ -16,7 +17,7 @@ import { ComponentsModule } from './components/components.module';
 		ComponentsModule,
 		AppRoutingModule,
 	],
-	providers: [],
+	providers: [StoreService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
