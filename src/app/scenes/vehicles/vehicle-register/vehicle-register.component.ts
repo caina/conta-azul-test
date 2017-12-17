@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Vehicle } from '../models/vehicle.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { VehicleService } from '../services/vehicle.service';
 
 @Component({
@@ -10,21 +10,38 @@ import { VehicleService } from '../services/vehicle.service';
 		<app-vehicle-register-form
 			(vehicleFormOutput)="registerVehicle($event)"
 			(cancelOutput)="registerCancel()"
+			[vehicle]="selectedVehicle"
 		></app-vehicle-register-form>
 	</app-container>
   `,
 })
-export class VehicleRegisterComponent {
+export class VehicleRegisterComponent implements OnInit {
 
-	constructor(private _router: Router, private _service: VehicleService) { }
+	public selectedVehicle: Vehicle;
+
+	constructor(
+		private _router: Router,
+		private _activeRoute: ActivatedRoute,
+		private _service: VehicleService) { }
+
+	ngOnInit(): void {
+		this._activeRoute.queryParams.subscribe(params => {
+			this._service.find(params.vehicle_id)
+				.subscribe(vehicle => this.selectedVehicle = vehicle);
+		});
+	}
 
 	registerVehicle(vehicle: Vehicle) {
-		console.log(vehicle);
-		this._service.add(vehicle);
+		if(vehicle.id) {
+			this._service.edit(vehicle);
+		} else {
+			this._service.add(vehicle);
+		}
 		this._router.navigate(['/']);
 	}
 
 	registerCancel() {
 		this._router.navigate(['/']);
 	}
+
 }

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, OnChanges, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Vehicle } from '../../../models/vehicle.model';
 
@@ -23,7 +23,7 @@ import { Vehicle } from '../../../models/vehicle.model';
 			</div>
 			<div class="form-group col-md-6">
 				<label for="input-foto">Link foto</label>
-				<input type="text" formControlName="foto" class="form-control" id="input-foto" placeholder="Foto">
+				<input type="text" formControlName="imagem" class="form-control" id="input-foto" placeholder="Foto">
 			</div>
 		</div>
 
@@ -55,26 +55,36 @@ import { Vehicle } from '../../../models/vehicle.model';
 	`,
 	styleUrls: ['./vehicle-register-form.component.scss']
 })
-export class VehicleRegisterFormComponent {
+export class VehicleRegisterFormComponent implements OnChanges {
 
 	registerForm: FormGroup;
+	@Input() vehicle: Vehicle = new Vehicle;
 	@Output() vehicleFormOutput: EventEmitter<Vehicle> = new EventEmitter<Vehicle>();
 	@Output() cancelOutput: EventEmitter<void> = new EventEmitter<void>();
 
-	constructor(private _formBuilder: FormBuilder) {
-		this.registerForm = _formBuilder.group({
-			'id': '',
-			'placa': [null, Validators.compose([Validators.required, Validators.minLength(7), Validators.maxLength(7)])],
-			'combustivel': [null, Validators.required],
-			'foto': [null],
-			'modelo': [null, Validators.required],
-			'marca': [null, Validators.required],
-			'valor': [null, Validators.required]
+	constructor(private _formBuilder: FormBuilder) { 
+		this.mountForm();
+	}
+
+	ngOnChanges(changes: SimpleChanges): void {
+		if(changes.vehicle.currentValue) {
+			this.mountForm();
+		}
+	}
+
+	mountForm() {
+		this.registerForm = this._formBuilder.group({
+			'id': [this.vehicle.id],
+			'placa': [this.vehicle.placa, Validators.compose([Validators.required, Validators.minLength(7), Validators.maxLength(9)])],
+			'combustivel': [this.vehicle.combustivel, Validators.required],
+			'imagem': [this.vehicle.imagem],
+			'modelo': [this.vehicle.modelo, Validators.required],
+			'marca': [this.vehicle.marca, Validators.required],
+			'valor': [this.vehicle.valor, Validators.required]
 		});
 	}
 
 	risterVehicleAct(vehicle: Vehicle) {
-		console.log(vehicle);
 		this.registerForm.reset();
 		this.vehicleFormOutput.emit(vehicle);
 	}

@@ -3,7 +3,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 @Component({
 	selector: 'app-button',
 	template: `
-	<button type="{{type || button}}" [disabled]="isDisabled" class="btn" [style.background-color]="getColor()" (click)="onClick.emit()">
+	<button type="{{type || 'button'}}" [disabled]="isDisabled" class="btn" [style.background-color]="getColor()" (click)="onClick.emit()">
 		<ng-content></ng-content>
 	</button>
 	`,

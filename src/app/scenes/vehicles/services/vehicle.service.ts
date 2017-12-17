@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Vehicle } from "../models/vehicle.model";
 import { StoreService } from "../../../services/store.service";
+import { Observable } from "rxjs/Observable";
+import 'rxjs/add/observable/of';
 
 @Injectable()
 export class VehicleService {
@@ -17,6 +19,15 @@ export class VehicleService {
 
 	public add(vehicle: Vehicle) {
 		this._database.addVehicle(vehicle);
+	}
+
+	public find(id) {
+		const vehicle = this._database.findVehicle(parseInt(id));
+		return Observable.of(vehicle);
+	}
+
+	public edit(vehicle){
+		this._database.editVehicle(vehicle);
 	}
 
 }

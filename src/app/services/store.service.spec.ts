@@ -65,4 +65,14 @@ describe('deve testar os servicos de armazenamento', () => {
 		expect(vehicles[5].marca).toBe('GM12');
 	});
 
+	it('deve editar o veiculo', () => {
+		const mock_vehicle = new Vehicle();
+		const savedVehicle = service.addVehicle(mock_vehicle);
+		savedVehicle.marca = "editada";
+		service.editVehicle(savedVehicle);
+
+		const vehicleFound = service.findVehicle(savedVehicle.id);
+		expect(vehicleFound.marca).toBe("editada");
+	})
+
 })

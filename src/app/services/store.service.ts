@@ -14,7 +14,7 @@ export class StoreService {
 		];
 	}
 
-	public cleanStore():void {
+	public cleanStore(): void {
 		this.store = [];
 	}
 
@@ -36,5 +36,10 @@ export class StoreService {
 	public listByPages(totalItens: number, page: number) {
 		const begin = page * totalItens;
 		return [...this.store.slice(begin, begin + totalItens)];
+	}
+
+	public editVehicle(vehicle: Vehicle) {
+		const index = this.store.findIndex(_el => _el.id == vehicle.id);
+		this.store[index] = vehicle;
 	}
 }

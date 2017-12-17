@@ -13,6 +13,7 @@ import { Vehicle } from '../models/vehicle.model';
 		></app-vehicle-list-actions>
 		<app-vehicle-list-table
 			[vehicles]="_service.vehicles$ | async"
+			(vehicleSelectedOutput)="selectVehicle($event)"
 		></app-vehicle-list-table>
 	</app-container>
   `,
@@ -33,6 +34,10 @@ export class VehicleListComponent implements OnInit{
 
 	navigateToAddCar() {
 		this._router.navigate(['vehicles/register'])
+	}
+
+	selectVehicle(vehicleId: number) {
+		this._router.navigate(['vehicles/register'], { queryParams: { vehicle_id: vehicleId } });
 	}
 
 }
