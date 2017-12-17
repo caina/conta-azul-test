@@ -12,6 +12,14 @@ export class StoreService {
 			new Vehicle(2, 'Gasolina', null, 'Volkswagem', 'Fox', 'FOX-4125', 20000),
 			new Vehicle(3, 'Alcool', 'http://carros.ig.com.br/fotos/2010/290_193/Fusca2_290_193.jpg', 'Volkswagen', ' Fusca', ' PAI-4121', 20000)
 		];
+
+		//todo deletar
+		for (let i = 1; i < 5; i++) {
+			const mock_vehicle = new Vehicle();
+			mock_vehicle.marca = `GM${i}`;
+			mock_vehicle.modelo = 'SS';
+			this.addVehicle(mock_vehicle);
+		}
 	}
 
 	public cleanStore(): void {
@@ -41,5 +49,9 @@ export class StoreService {
 	public editVehicle(vehicle: Vehicle) {
 		const index = this.store.findIndex(_el => _el.id == vehicle.id);
 		this.store[index] = vehicle;
+	}
+
+	public getNumberOfVehicles() {
+		return this.store.length;
 	}
 }

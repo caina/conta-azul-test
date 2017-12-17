@@ -73,6 +73,14 @@ describe('deve testar os servicos de armazenamento', () => {
 
 		const vehicleFound = service.findVehicle(savedVehicle.id);
 		expect(vehicleFound.marca).toBe("editada");
-	})
+	});
+
+	it('deve pegar o total de registros', ()=> {
+		service.cleanStore();
+		service.addVehicle(new Vehicle());
+		const total = service.getNumberOfVehicles();
+		expect(total).toBe(1);
+		
+	});
 
 })

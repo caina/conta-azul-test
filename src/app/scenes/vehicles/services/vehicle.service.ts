@@ -36,4 +36,8 @@ export class VehicleService {
 		})
 	}
 
+	public getTotalPages() {
+		return Observable.of(this._database.getNumberOfVehicles());
+	}
+
 }
