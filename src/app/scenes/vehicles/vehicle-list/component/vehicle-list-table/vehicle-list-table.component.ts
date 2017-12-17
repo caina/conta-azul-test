@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 	<table class="table">
 		<thead>
 			<tr>
-				<th scope="col"><input type="checkbox"></th>
+				<th scope="col"><input type="checkbox" (click)="markAllToRemove()"></th>
 				<th scope="col">Placa</th>
 				<th scope="col">Modelo</th>
 				<th scope="col">Marca</th>
@@ -18,8 +18,13 @@ import { Router } from '@angular/router';
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let vehicle of vehicles" (click)="vehicleSelectedOutput.emit(vehicle.id)">
-				<th scope="row">1</th>
+			<tr *ngFor="let vehicle of vehicles" 
+				(dblclick)="vehicleSelectedOutput.emit(vehicle.id)" 
+				(click)="markToRemove(vehicle)">
+
+				<th scope="row">
+					<input type="checkbox" ([ngModel])="vehicle.checked" [checked]="vehicle.checked"/>
+				</th>
 				<td>{{vehicle.placa}}</td>
 				<td>{{vehicle.modelo}}</td>
 				<td>{{vehicle.marca}}</td>
@@ -37,6 +42,22 @@ export class VehicleListTableComponent {
 
 	@Input() vehicles: Vehicle[];
 	@Output() vehicleSelectedOutput: EventEmitter<number> = new EventEmitter<number>();
+	@Output() toDeleteOutput: EventEmitter<Vehicle[]> = new EventEmitter<Vehicle[]>();
+
 	constructor() { }
-	
+
+	markAllToRemove() {
+		this.vehicles.forEach(_el => _el.checked = !_el.checked);
+		this.emitRemoveOutput();
+	}
+
+	markToRemove(vehicle: Vehicle) {
+		vehicle.checked = !vehicle.checked;
+		this.emitRemoveOutput();
+	}
+
+	emitRemoveOutput() {
+		this.toDeleteOutput.emit(this.vehicles.filter(_el => _el.checked));
+	}
+
 }

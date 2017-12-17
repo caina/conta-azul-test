@@ -30,4 +30,10 @@ export class VehicleService {
 		this._database.editVehicle(vehicle);
 	}
 
+	public remove(vehicle: Vehicle[]) {
+		vehicle.forEach(_el => {
+			this._database.removeVehicle(_el.id);
+		})
+	}
+
 }

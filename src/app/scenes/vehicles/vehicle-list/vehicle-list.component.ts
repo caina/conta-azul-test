@@ -9,11 +9,14 @@ import { Vehicle } from '../models/vehicle.model';
 	template: `
 	<app-container>
 		<app-vehicle-list-actions
-			(newCarClick)="navigateToAddCar()"
+			(newCarClick)="navigateToAdd()"
+			(deleteClick)="deleteSelectedCars()"
+			[showDeleteButton]="selectedCars.length > 0"
 		></app-vehicle-list-actions>
 		<app-vehicle-list-table
 			[vehicles]="_service.vehicles$ | async"
-			(vehicleSelectedOutput)="selectVehicle($event)"
+			(vehicleSelectedOutput)="navigateToEdit($event)"
+			(toDeleteOutput)="updateSelectedCars($event)"
 		></app-vehicle-list-table>
 	</app-container>
   `,
@@ -26,18 +29,33 @@ import { Vehicle } from '../models/vehicle.model';
 export class VehicleListComponent implements OnInit{
 	
 	private readonly TOTAL_RECORDS = 6;
+	public page = 0;
+	private selectedCars: Vehicle[] = [];
 	constructor(private _router: Router, public _service: VehicleService) { }
 
 	ngOnInit(): void {
-		this._service.list(this.TOTAL_RECORDS,0);
+		this.updateVehiclelist();
 	}
 
-	navigateToAddCar() {
+	private updateVehiclelist() {
+		this._service.list(this.TOTAL_RECORDS,this.page);
+	}
+
+	navigateToAdd() {
 		this._router.navigate(['vehicles/register'])
 	}
 
-	selectVehicle(vehicleId: number) {
+	navigateToEdit(vehicleId: number) {
 		this._router.navigate(['vehicles/register'], { queryParams: { vehicle_id: vehicleId } });
+	}
+
+	updateSelectedCars(vehicles: Vehicle[]) {
+		this.selectedCars = vehicles;
+	}
+
+	deleteSelectedCars() {
+		this._service.remove(this.selectedCars);
+		this.updateVehiclelist();
 	}
 
 }

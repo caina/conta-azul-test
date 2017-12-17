@@ -6,6 +6,7 @@ export class Vehicle {
 	modelo: string;
 	placa: string;
 	valor: number;
+	checked: boolean = false;
 
 	constructor(
 		id?: number,

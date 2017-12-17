@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 	<section>
 		<span>
 			<app-button buttonType="primary" (onClick)="newCarClick.emit()">Novo Carro</app-button>
-			<app-button buttonType="warning">Excluir Carro</app-button>
+			<app-button buttonType="warning" (onClick)="deleteClick.emit()" *ngIf="showDeleteButton">Excluir Carro</app-button>
 		</span>
 		<app-lookup-input></app-lookup-input>
 	</section>
@@ -16,12 +16,9 @@ import { Router } from '@angular/router';
 })
 export class VehicleListActionsComponent {
 
+	@Input() showDeleteButton: boolean;
 	@Output() newCarClick: EventEmitter<void> = new EventEmitter<void>();
+	@Output() deleteClick: EventEmitter<void> = new EventEmitter<void>();
+
 	constructor() { }
-
-	teste() {
-		console.log("???");
-
-	}
-
 }
