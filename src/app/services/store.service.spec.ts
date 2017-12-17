@@ -36,6 +36,7 @@ describe('deve testar os servicos de armazenamento', () => {
 	});
 
 	it('deve pegar apenas os 6 primeiros elementos da pagina 1', () => {
+		service.cleanStore();
 		for (let i = 1; i < 120; i++) {
 			const mock_vehicle = new Vehicle();
 			mock_vehicle.marca = `GM${i}`;
@@ -50,6 +51,7 @@ describe('deve testar os servicos de armazenamento', () => {
 	});
 
 	it('deve pegar apenas os 6 primeiros elementos da pagina 2', () => {
+		service.cleanStore();
 		for (let i = 1; i < 120; i++) {
 			const mock_vehicle = new Vehicle();
 			mock_vehicle.marca = `GM${i}`;

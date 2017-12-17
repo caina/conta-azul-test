@@ -1,7 +1,8 @@
-import { Vehicle } from '../models/vehicle.model';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+
+import { VehicleService } from '../services/vehicle.service';
+import { Vehicle } from '../models/vehicle.model';
 
 @Component({
 	selector: 'app-vehicle-list',
@@ -11,7 +12,7 @@ import { Observable } from 'rxjs/Observable';
 			(newCarClick)="navigateToAddCar()"
 		></app-vehicle-list-actions>
 		<app-vehicle-list-table
-			[vehicles]="vehicles | async"
+			[vehicles]="_service.vehicles$ | async"
 		></app-vehicle-list-table>
 	</app-container>
   `,
@@ -21,11 +22,14 @@ import { Observable } from 'rxjs/Observable';
 		}
   `]
 })
-export class VehicleListComponent {
+export class VehicleListComponent implements OnInit{
+	
+	private readonly TOTAL_RECORDS = 6;
+	constructor(private _router: Router, public _service: VehicleService) { }
 
-	vehicles: Observable<any[]>;
-
-	constructor(private _router: Router) { }
+	ngOnInit(): void {
+		this._service.list(this.TOTAL_RECORDS,0);
+	}
 
 	navigateToAddCar() {
 		this._router.navigate(['vehicles/register'])

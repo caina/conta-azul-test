@@ -11,6 +11,7 @@ import { VehicleListActionsComponent } from './vehicle-list/component/vehicle-li
 
 import { VehicleRegisterComponent } from './vehicle-register/vehicle-register.component';
 import { VehicleRegisterFormComponent } from './vehicle-register/component/vehicle-register-form/vehicle-register-form.component';
+import { VehicleService } from './services/vehicle.service';
 
 @NgModule({
 	imports: [
@@ -26,6 +27,9 @@ import { VehicleRegisterFormComponent } from './vehicle-register/component/vehic
 		VehicleListTableComponent,
 		VehicleRegisterComponent,
 		VehicleRegisterFormComponent,
+	],
+	providers: [
+		VehicleService
 	]
 })
 export class VehiclesModule { }

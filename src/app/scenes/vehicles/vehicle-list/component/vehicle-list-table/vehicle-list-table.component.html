@@ -11,41 +11,15 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
+		<tr *ngFor="let vehicle of vehicles">
 			<th scope="row">1</th>
-			<td>ITV4312</td>
-			<td>GOL</td>
-			<td>Wolkvagen</td>
+			<td>{{vehicle.placa}}</td>
+			<td>{{vehicle.modelo}}</td>
+			<td>{{vehicle.marca}}</td>
 			<td>Sem foto</td>
-			<td>Gasolina</td>
-			<td>20.000</td>
+			<td>{{vehicle.combustivel}}</td>
+			<td>{{vehicle.valor}}</td>
 		</tr>
-		<tr>
-			<th scope="row">1</th>
-			<td>ITV4312</td>
-			<td>GOL</td>
-			<td>Wolkvagen</td>
-			<td>Sem foto</td>
-			<td>Gasolina</td>
-			<td>20.000</td>
-		</tr>
-		<tr>
-			<th scope="row">1</th>
-			<td>ITV4312</td>
-			<td>GOL</td>
-			<td>Wolkvagen</td>
-			<td>Sem foto</td>
-			<td>Gasolina</td>
-			<td>20.000</td>
-		</tr>
-		<tr>
-			<th scope="row">1</th>
-			<td>ITV4312</td>
-			<td>GOL</td>
-			<td>Wolkvagen</td>
-			<td>Sem foto</td>
-			<td>Gasolina</td>
-			<td>20.000</td>
-		</tr>
+		
 	</tbody>
 </table>

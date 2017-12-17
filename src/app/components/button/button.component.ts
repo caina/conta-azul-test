@@ -3,7 +3,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 @Component({
 	selector: 'app-button',
 	template: `
-	<button type="button" [disabled]="isDisabled" class="btn" [style.background-color]="getColor()" (click)="onClick.emit()">
+	<button type="{{type || button}}" [disabled]="isDisabled" class="btn" [style.background-color]="getColor()" (click)="onClick.emit()">
 		<ng-content></ng-content>
 	</button>
 	`,
@@ -12,6 +12,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 export class ButtonComponent {
 
 	@Input() buttonType: string;
+	@Input() type:string;
 	@Input() isDisabled: boolean;
 	@Output() onClick: EventEmitter<void> = new EventEmitter<void>();
 	constructor() { }

@@ -5,7 +5,7 @@ import { Vehicle } from '../../../models/vehicle.model';
 @Component({
 	selector: 'app-vehicle-register-form',
 	template: `
-	<form [formGroup]="registerForm" (ngSubmit)="risterVehicleAct(registerForm.value)">
+	<form #form [formGroup]="registerForm" (ngSubmit)="risterVehicleAct(registerForm.value)">
 		<div class="form-row">
 			<div class="form-group col-md-3">
 				<label for="input-placa">Placa (sem separação)</label>
@@ -48,7 +48,7 @@ import { Vehicle } from '../../../models/vehicle.model';
 		<div class="form-row">
 			<div class="form-group">
 				<app-button buttonType="primary" type="submit" [isDisabled]="!registerForm.valid">Salvar</app-button>
-				<app-button buttonType="warning" (click)="this.cancelOutput.emit()">Cancelar</app-button>
+				<app-button buttonType="warning" (onClick)="this.cancelOutput.emit()">Cancelar</app-button>
 			</div>
 		</div>
 	</form>
@@ -74,6 +74,7 @@ export class VehicleRegisterFormComponent {
 	}
 
 	risterVehicleAct(vehicle: Vehicle) {
+		console.log(vehicle);
 		this.registerForm.reset();
 		this.vehicleFormOutput.emit(vehicle);
 	}

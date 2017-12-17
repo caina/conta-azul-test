@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Vehicle } from '../models/vehicle.model';
 import { Router } from '@angular/router';
+import { VehicleService } from '../services/vehicle.service';
 
 @Component({
 	selector: 'app-vehicle-register',
@@ -15,10 +16,12 @@ import { Router } from '@angular/router';
 })
 export class VehicleRegisterComponent {
 
-	constructor(private _router: Router) { }
+	constructor(private _router: Router, private _service: VehicleService) { }
 
 	registerVehicle(vehicle: Vehicle) {
 		console.log(vehicle);
+		this._service.add(vehicle);
+		this._router.navigate(['/']);
 	}
 
 	registerCancel() {
