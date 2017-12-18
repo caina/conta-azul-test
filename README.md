@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/caina/conta-azul-test.svg?branch=master)](https://travis-ci.org/caina/conta-azul-test)
 # ContaAzul
 App para a prova teste da conta azul
 
