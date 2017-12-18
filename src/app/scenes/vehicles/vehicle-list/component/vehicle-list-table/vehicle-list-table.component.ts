@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
 	selector: 'app-vehicle-list-table',
 	template: `
-	<table class="table">
+	<table class="custom-table table-hover">
 		<thead>
 			<tr>
 				<th scope="col"><input type="checkbox" (click)="markAllToRemove()"></th>
@@ -19,18 +19,23 @@ import { Router } from '@angular/router';
 		</thead>
 		<tbody>
 			<tr *ngFor="let vehicle of vehicles" 
+				ngClass="{selected: vehicle.checked}"
 				(dblclick)="vehicleSelectedOutput.emit(vehicle.id)" 
 				(click)="markToRemove(vehicle)">
 
-				<th scope="row">
-					<input type="checkbox" ([ngModel])="vehicle.checked" [checked]="vehicle.checked"/>
+				<th>
+					<input type="checkbox" id="ck{{vehicle.id}}" ([ngModel])="vehicle.checked" [checked]="vehicle.checked"/>
+					<label for="ck{{vehicle.id}}"></label>
 				</th>
 				<td>{{vehicle.placa}}</td>
 				<td>{{vehicle.modelo}}</td>
 				<td>{{vehicle.marca}}</td>
-				<td>Sem foto</td>
+
+				<td *ngIf="vehicle.imagem"><a href="{{vehicle.imagem}}" target="_blank">Imagem</a></td>
+				<td *ngIf="!vehicle.imagem">Sem Foto</td>
+
 				<td>{{vehicle.combustivel}}</td>
-				<td>{{vehicle.valor}}</td>
+				<td>{{vehicle.valor | currency:'BRL'}}</td>
 			</tr>
 			
 		</tbody>

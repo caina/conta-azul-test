@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { HeaderComponent } from './header/header.component';
 import { ButtonComponent } from './button/button.component';
@@ -19,7 +20,10 @@ const COMPONENTS = [
 
 @NgModule({
 	declarations: [COMPONENTS],
-	imports: [CommonModule],
+	imports: [
+		CommonModule,
+		FormsModule,
+	],
 	exports: [COMPONENTS],
 })
 export class ComponentsModule { }

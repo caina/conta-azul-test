@@ -26,6 +26,11 @@ export class VehicleService {
 		return Observable.of(vehicle);
 	}
 
+	public search(expression) {
+		const vehicles = this._database.filter(expression);
+		this.vehicleSource.next(vehicles);
+	}
+
 	public edit(vehicle){
 		this._database.editVehicle(vehicle);
 	}

@@ -54,4 +54,19 @@ export class StoreService {
 	public getNumberOfVehicles() {
 		return this.store.length;
 	}
+
+	public filter(expression): Vehicle[] {
+		return this.store.filter(_el => {
+			if (_el.marca.includes(expression)) {
+				return true;
+			} else if (_el.modelo && _el.modelo.includes(expression)) {
+				return true;
+			} else if (_el.placa && _el.placa.includes(expression)) {
+				return true;
+			} else if (_el.valor === parseInt(expression)) {
+				return true;
+			}
+			return false;
+		})
+	}
 }

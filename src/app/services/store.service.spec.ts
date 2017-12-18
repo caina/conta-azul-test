@@ -83,4 +83,20 @@ describe('deve testar os servicos de armazenamento', () => {
 		
 	});
 
+	it('Deve filtrar por todos os campos', ()=> {
+		service.cleanStore();
+		
+		let mock_vehicle = new Vehicle();
+		mock_vehicle.marca="Lorem";
+		service.addVehicle(mock_vehicle);
+		
+		mock_vehicle = new Vehicle();
+		mock_vehicle.marca="Ispsun";
+		service.addVehicle(mock_vehicle);
+		
+		const filter = service.filter("Lorem");
+		expect(filter.length).toBe(1);
+		expect(filter[0].marca).toBe("Lorem");
+	});
+
 })

@@ -12,6 +12,7 @@ import { Vehicle } from '../models/vehicle.model';
 			(newCarClick)="navigateToAdd()"
 			(deleteClick)="deleteSelectedCars()"
 			[showDeleteButton]="selectedCars.length > 0"
+			(searchOutput)="filterVehicles($event)"
 		></app-vehicle-list-actions>
 		<app-vehicle-list-table
 			[vehicles]="_service.vehicles$ | async"
@@ -76,6 +77,10 @@ export class VehicleListComponent implements OnInit {
 		this.updateTotalPages();
 	}
 
+	filterVehicles(expression) {
+		console.log("??", expression);
+		this._service.search(expression);
+	}
 
 	updateTotalPages() {
 		this._service.getTotalPages()

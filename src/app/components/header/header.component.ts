@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 	<nav class="navbar navbar-expand-md navbar-light">
 		<div class="container">
 			<a class="navbar-brand" href="/">
-				// teste
+				<img src="/assets/logo.png" />
 			</a>
 		</div>
 	</nav>
