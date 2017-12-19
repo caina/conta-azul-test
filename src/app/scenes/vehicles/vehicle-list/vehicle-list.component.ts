@@ -41,7 +41,7 @@ export class VehicleListComponent implements OnInit {
 
 	public page = 0;
 	public totalVehicles: number;
-	public readonly TOTAL_RECORDS = 6;
+	public readonly TOTAL_RECORDS = 5;
 	public selectedCars: Vehicle[] = [];
 
 	constructor(private _router: Router, public _service: VehicleService) { }
