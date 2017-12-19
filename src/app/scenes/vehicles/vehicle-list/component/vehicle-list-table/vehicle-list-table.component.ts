@@ -5,10 +5,14 @@ import { Router } from '@angular/router';
 @Component({
 	selector: 'app-vehicle-list-table',
 	template: `
-	<table class="custom-table table-hover">
+	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th scope="col"><input type="checkbox" (click)="markAllToRemove()"></th>
+				<th scope="col">
+					<app-checkbox
+					(modelChange)="markAllToRemove($event)"
+					></app-checkbox>
+				</th>
 				<th scope="col">Placa</th>
 				<th scope="col">Modelo</th>
 				<th scope="col">Marca</th>
@@ -19,14 +23,15 @@ import { Router } from '@angular/router';
 		</thead>
 		<tbody>
 			<tr *ngFor="let vehicle of vehicles" 
-				ngClass="{selected: vehicle.checked}"
+				[ngClass]="{selected: vehicle.checked}"
 				(dblclick)="vehicleSelectedOutput.emit(vehicle.id)" 
 				(click)="markToRemove(vehicle)">
 
-				<th>
-					<input type="checkbox" id="ck{{vehicle.id}}" ([ngModel])="vehicle.checked" [checked]="vehicle.checked"/>
-					<label for="ck{{vehicle.id}}"></label>
-				</th>
+				<td>
+					<app-checkbox
+						[(model)]="vehicle.checked"
+					></app-checkbox>
+				</td>
 				<td>{{vehicle.placa}}</td>
 				<td>{{vehicle.modelo}}</td>
 				<td>{{vehicle.marca}}</td>
@@ -51,8 +56,8 @@ export class VehicleListTableComponent {
 
 	constructor() { }
 
-	markAllToRemove() {
-		this.vehicles.forEach(_el => _el.checked = !_el.checked);
+	markAllToRemove(marked) {
+		this.vehicles.forEach(_el => _el.checked = marked);
 		this.emitRemoveOutput();
 	}
 

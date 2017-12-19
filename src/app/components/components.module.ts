@@ -8,6 +8,7 @@ import { LookupInputComponent } from './lookup-input/lookup-input.component';
 import { ContainerComponent } from './container/container.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { CentralizeContentComponent } from './centralize-content/centralize-content.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 
 const COMPONENTS = [
 	HeaderComponent,
@@ -15,7 +16,8 @@ const COMPONENTS = [
 	LookupInputComponent,
 	ContainerComponent,
 	PaginationComponent,
-	CentralizeContentComponent
+	CentralizeContentComponent,
+	CheckboxComponent
 ];
 
 @NgModule({

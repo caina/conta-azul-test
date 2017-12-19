@@ -56,14 +56,18 @@ export class StoreService {
 	}
 
 	public filter(expression): Vehicle[] {
+		expression = expression.toLowerCase();
+		
 		return this.store.filter(_el => {
-			if (_el.marca.includes(expression)) {
+			if (_el.marca && _el.marca.toLowerCase().includes(expression)) {
 				return true;
-			} else if (_el.modelo && _el.modelo.includes(expression)) {
+			} else if (_el.modelo && _el.modelo.toLowerCase().includes(expression)) {
 				return true;
-			} else if (_el.placa && _el.placa.includes(expression)) {
+			} else if (_el.placa && _el.placa.toLowerCase().includes(expression)) {
 				return true;
-			} else if (_el.valor === parseInt(expression)) {
+			} else if (_el.combustivel && _el.combustivel.toLowerCase().includes(expression)) {
+				return true;
+			}  else if (_el.valor === parseInt(expression)) {
 				return true;
 			}
 			return false;
