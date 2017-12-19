@@ -1,6 +1,13 @@
 :host {
+	.fa {
+		color: #3A6183;
+	}
 	input {
 		height: 38px;
+		&:focus {
+			outline: none;
+			box-shadow: none;
+		}
 	}
 	.input-group-addon {
 		background-color: #F1F4F9;
@@ -8,7 +15,7 @@
 		cursor: pointer;
 
 		&:hover {
-			background-color: rgb(215, 219, 224);
+			background-color: #FFFBEA;
 		}
 	}
 }

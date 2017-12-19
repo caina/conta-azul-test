@@ -2,7 +2,7 @@
 	$table-border-color :#C1C3C7;
 	
 	.selected {
-		background-color: #D5E9FC;
+		background-color: #D5E9FC !important;
 	}
 	
 	.table {
@@ -38,6 +38,9 @@
 		}
 
 		tbody {
+			tr:hover {
+				background-color: #FFFBEA;
+			}
 			background-color: #fff;
 			tr td:first-child {
 				border-left-width: 1px;
