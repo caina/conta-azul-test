@@ -2,11 +2,13 @@
 # ContaAzul
 App para a prova teste da conta azul
 
-## Arquitetura
+para rodar, execute `ng serve --aot`
+depende do angular-cli 1.6.1
 
-Iremos utilizar para este aplicativo uma arquitetura de Stateless e Statefull components, nossos componentes dentro da pasta "scenes" são containers de tela, que representam paths que podemos acessar pela url.
+# Frameworks/Libs escolhidas
+- Angular 5 rodando em Ahead of time
+- Bootstrap 4
+- Font-awesome
 
-seus componentes internos apenas irão representar o estilo do aplicativo, sendo possível um melhor reaproveitamento dos mesmos.
-
-## Lazy Load
-Nossas rotas estão configuradas para trabalhar de maneira com que um componente de tipo cena seja carregado apenas quando requisitado, diminuindo o consumo de memódia da aplicação.
+## Para acessar a aplicação, acesse
+http://douglas-conta-azul.surge.sh
